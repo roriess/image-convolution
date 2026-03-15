@@ -16,7 +16,8 @@
 *   `sharpen_3x3`: повышение резкости.
 *   `blur_3x3`: усредняющее размытие.
 *   `gaussian_blur_3x3`: размытие по Гауссу.
-*   `highlighting_borders_3x3`: выделение вертикальных границ.
+*   `highlighting_vertical_borders_3x3`: выделение вертикальных границ.
+*   `highlighting_horizontal_borders_3x3`: выделение горизонтальных границ.
 *   `embossing_3x3`:  эффект тиснения.
 ### 5х5:
 *   `blur_5x5`: усредняющее размытие.

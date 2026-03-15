@@ -13,10 +13,15 @@ gaussian_blur_3x3 = np.array([[1, 2, 1],
                               [2, 4, 2],
                               [1, 2, 1]]) / 16
 
-# выделение границ 3х3
-highlighting_borders_3x3 = np.array([[1, 0, -1],
+# выделение вертикальных границ 3х3
+highlighting_vertical_borders_3x3 = np.array([[1, 0, -1],
                                      [1, 0, -1],
                                      [1, 0, -1]])
+
+# выделение горизонтальных границ 3х3
+highlighting_horizontal_borders_3x3 = np.array([[ 1,  1,  1],
+                                                [ 0,  0,  0],
+                                                [-1, -1, -1]])
 
 # тиснение 3х3
 embossing_3x3 = np.array([[-2, -1, 0],
