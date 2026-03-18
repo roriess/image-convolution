@@ -2,7 +2,7 @@ import numpy as np
 
 
 # игнорирование краёв
-def no_padding(arr_img: int, kernel_height: int) -> int:
+def no_padding(arr_img: np.ndarray, kernel_height: np.ndarray) -> np.ndarray:
     img_height, img_width = arr_img.shape
 
     img_height = img_height - kernel_height + 1
@@ -53,5 +53,5 @@ PADDINGS = {
 
 
 # применение обработки края к будущему изображению
-def add_padding(arr_img: int, kernel_height: int, func) -> int:
+def add_padding(arr_img: np.ndarray, kernel_height: np.ndarray, func) -> np.ndarray:
     return func(arr_img, kernel_height)

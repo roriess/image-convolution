@@ -1,4 +1,4 @@
-from convolution_grayscale import *
+from convolution_grayscale import convolution_grayscale
 
 
 def main():

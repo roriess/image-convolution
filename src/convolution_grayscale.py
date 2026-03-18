@@ -1,12 +1,12 @@
 from PIL import Image
 import numpy as np
-from kernels import *
-from padding import *
+from kernels import KERNELS
+from padding import PADDINGS, add_padding
 import sys
 import os
 
 
-def convert_to_grayscale(arr_img: int) -> int:
+def convert_to_grayscale(arr_img: np.ndarray) -> np.ndarray:
     gray = (
         0.299 * arr_img[:, :, 0] + 0.587 * arr_img[:, :, 1] + 0.114 * arr_img[:, :, 2]
     )  # коэффициенты luminosity
