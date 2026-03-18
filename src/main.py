@@ -1,11 +1,7 @@
-from convolutionGS import *
+from convolution_grayscale import *
 
 def main():
-    image = "image.jpg"
-    kernel = embossing_3x3
-    padding = "no_padding"
-
-    convolution_GS(image, kernel, padding)
+    convolution_grayscale()
 
 if __name__ == "__main__":
     main()

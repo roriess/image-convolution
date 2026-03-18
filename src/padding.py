@@ -1,7 +1,7 @@
 import numpy as np
 
 # игнорирование краёв
-def no_padding(arr_img, kernel_height):
+def no_padding(arr_img: int, kernel_height: int) -> int:
     img_height, img_width = arr_img.shape
 
     img_height = img_height - kernel_height + 1
@@ -33,9 +33,16 @@ def tile_padding(arr_img):
 def symmetric_padding(arr_img):
     pass
 
+PADDINGS = {
+    "no_padding": no_padding,
+    "zero_padding": zero_padding,
+    "constant_padding": constant_padding,
+    "replicate": replicate,
+    "mirror_padding": mirror_padding,
+    "tile_padding": tile_padding,
+    "symmetric_padding": symmetric_padding
+}
+
 # применение обработки края к будущему изображению
-def add_padding(arr_img, kernel_height, padding):
-    if padding == "no_padding": 
-        return no_padding(arr_img, kernel_height)
-    else: 
-        print("Use another padding\n") # здесь будут дописаны другие варианты обработки края
+def add_padding(arr_img: int, kernel_height: int, func) -> int:
+    return func(arr_img, kernel_height)
