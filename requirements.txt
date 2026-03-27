@@ -1,1 +1,3 @@
 hypothesis
+types-pillow
+numpy-stubs

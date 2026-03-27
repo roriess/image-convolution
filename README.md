@@ -27,7 +27,7 @@
 ##
 Запуск программы: 
 ```markdown
-python src/main.py <изображение> <ядро> <вид обработки края>
+python main.py --input_dir INPUT_DIR --output_dir OUTPUT_DIR --kernel KERNEL --padding PADDING
 ```
 ## 
 Изображение для примера взято с данного сайта: https://www.publicdomainarchive.com/ \
