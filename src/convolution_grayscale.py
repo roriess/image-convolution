@@ -1,22 +1,12 @@
 from PIL import Image
 import numpy as np
-from kernels import KERNELS
-from padding import PADDINGS, add_padding
-
-
-def convert_to_grayscale(arr_img: np.ndarray) -> np.ndarray:
-    gray = (
-        0.299 * arr_img[:, :, 0] + 0.587 * arr_img[:, :, 1] + 0.114 * arr_img[:, :, 2]
-    )  # коэффициенты luminosity
-    return gray.astype(np.uint8)
+from src.kernels import KERNELS
+from src.padding import PADDINGS, add_padding
 
 
 def convolution_grayscale(args):
-    img = Image.open(args.input_dir)
-
-    arr_img = np.array(img)
-    if len(arr_img.shape) == 3:
-        arr_img = convert_to_grayscale(arr_img)
+    img = Image.open(args.input_dir).convert("L")
+    arr_img = np.asarray(img, dtype=np.float32)
 
     kernel_height, _ = KERNELS[args.kernel].shape
 

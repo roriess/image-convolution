@@ -8,7 +8,7 @@ def no_padding(arr_img: np.ndarray, kernel_height: np.ndarray) -> np.ndarray:
     img_height = img_height - kernel_height + 1
     img_width = img_width - kernel_height + 1
 
-    return np.zeros((img_height, img_width))
+    return np.zeros((img_height, img_width), dtype=np.float32)
 
 
 # дополнение нулями
