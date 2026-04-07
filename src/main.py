@@ -18,7 +18,7 @@ def main():
 
     args = parser.parse_args()
 
-    convolution_grayscale(args)
+    convolution_grayscale(**vars(args))
 
 
 if __name__ == "__main__":
