@@ -24,10 +24,21 @@
 *   `blur_5x5`: усредняющее размытие.
 *   `gaussian_blur_5x5`: размытие по Гауссу.
 
+
+## Доступные варианты обработки края
+### Размер итогового изображения меньше размера исходного:
+*   `no_padding`: игнорирование краёв.
+### Размер итогового изображения равен размеру исходного:
+*   `zero_padding`: дополнение нулями.
+*   `replicate_padding`: копирование крайних пикселей.
+*   `mirror_padding`: отражение без дублирования границы.
+*   `symmetric_padding`: симметричное отражение с дублированием границы.
+*   `tile_padding`: циклическое продолжение.
+
 ##
 Запуск программы: 
 ```markdown
-python main.py --input_dir INPUT_DIR --output_dir OUTPUT_DIR --kernel KERNEL --padding PADDING
+python main.py --input_dir INPUT_DIR --output_dir --image_mode IMAGE_MODE OUTPUT_DIR --kernel KERNEL --padding PADDING
 ```
 ## 
 Изображение для примера взято с данного сайта: https://www.publicdomainarchive.com/ \

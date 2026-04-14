@@ -1,4 +1,4 @@
-from convolution_grayscale import convolution_grayscale
+from convolution import convolution_grayscale, convolution_rgb
 import argparse
 
 
@@ -10,6 +10,12 @@ def main():
         "--output_dir", type=str, required=True, help="Output directory"
     )
     parser.add_argument(
+        "--image_mode",
+        type=str,
+        required=True,
+        help="Image color mode: 'L' for grayscale, 'RGB' for color",
+    )
+    parser.add_argument(
         "--kernel", type=str, required=True, help="Selected filter for photo processing"
     )
     parser.add_argument(
@@ -18,7 +24,14 @@ def main():
 
     args = parser.parse_args()
 
-    convolution_grayscale(**vars(args))
+    if args["image_mode"] == "L":
+        convolution_grayscale(**vars(args))
+    elif args["image_mode"] == "RGB":
+        convolution_rgb(**vars(args))
+    else:
+        raise ValueError(
+            f"Unsupported image mode: {args['image_mode']}. Use 'L' for grayscale or 'RGB' for color."
+        )
 
 
 if __name__ == "__main__":
