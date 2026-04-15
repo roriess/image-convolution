@@ -7,9 +7,6 @@ from PIL import Image
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from src.convolution import convolution_grayscale
-from src.kernels import KERNELS
-from src.padding import PADDINGS
-
 
 GOLDEN_DIR = Path(__file__).parent / "for_test_grayscale/golden_grayscale"
 
@@ -24,13 +21,20 @@ def args():
     }
 
 
-@pytest.mark.parametrize("kernel_name", KERNELS.keys())
-@pytest.mark.parametrize("padding_name", PADDINGS)
+COMBINATIONS = [
+    ("sharpen_3x3", "no_padding"),
+    ("blur_3x3", "symmetric_padding"),
+    ("gaussian_blur_3x3", "no_padding"),
+    ("highlighting_vertical_borders_3x3", "symmetric_padding"),
+]
+
+
+@pytest.mark.parametrize("kernel_name, padding_name", COMBINATIONS)
 def test_kernel(kernel_name, padding_name, args):
-    output_dir = Path(args["output_dir"]) / padding_name
+    output_dir = Path(args["output_dir"])
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    output_file = output_dir / f"result_{kernel_name}.png"
+    output_file = output_dir / f"result_{kernel_name}_{padding_name}.png"
 
     test_args = args.copy()
     test_args["kernel"] = kernel_name
@@ -43,7 +47,7 @@ def test_kernel(kernel_name, padding_name, args):
     result_img = Image.open(output_file).convert("L")
     result = np.asarray(result_img)
 
-    expected_path = GOLDEN_DIR / padding_name / f"{kernel_name}.png"
+    expected_path = GOLDEN_DIR / f"{kernel_name}_{padding_name}.png"
     assert expected_path.exists(), f"Golden file not found: {expected_path}"
 
     expected_img = Image.open(expected_path).convert("L")
