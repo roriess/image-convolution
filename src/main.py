@@ -1,5 +1,7 @@
-from convolution import convolution_grayscale, convolution_rgb
+from src.convolution import convolution_grayscale, convolution_rgb
 import argparse
+from PIL import Image
+import numpy as np
 
 
 def main():
@@ -24,14 +26,21 @@ def main():
 
     args = parser.parse_args()
 
-    if args["image_mode"] == "L":
-        convolution_grayscale(**vars(args))
-    elif args["image_mode"] == "RGB":
-        convolution_rgb(**vars(args))
-    else:
+    if args.image_mode != "L" and args.image_mode != "RGB":
         raise ValueError(
             f"Unsupported image mode: {args['image_mode']}. Use 'L' for grayscale or 'RGB' for color."
         )
+
+    img = Image.open(args.input_dir).convert(args.image_mode)
+    arr_img = np.asarray(img, dtype=np.float32)
+
+    func = convolution_grayscale if args.image_mode == "L" else convolution_rgb
+    func(
+        arr_img=arr_img,
+        kernel=args.kernel,
+        padding=args.padding,
+        output_dir=args.output_dir,
+    )
 
 
 if __name__ == "__main__":

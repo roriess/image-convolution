@@ -1,14 +1,11 @@
-import sys
 import numpy as np
 import pytest
 from pathlib import Path
 from PIL import Image
 
-sys.path.insert(0, str(Path(__file__).parent.parent))
-
 from src.convolution import convolution_grayscale
 
-GOLDEN_DIR = Path(__file__).parent / "for_test_grayscale/golden_grayscale"
+GOLDEN_DIR = Path("tests/for_test_grayscale/golden_grayscale")
 
 
 @pytest.fixture
@@ -36,12 +33,16 @@ def test_kernel(kernel_name, padding_name, args):
 
     output_file = output_dir / f"result_{kernel_name}_{padding_name}.png"
 
-    test_args = args.copy()
-    test_args["kernel"] = kernel_name
-    test_args["padding"] = padding_name
-    test_args["output_dir"] = str(output_file)
+    img = Image.open(args["input_dir"]).convert("L")
+    arr_img = np.asarray(img, dtype=np.float32)
 
-    convolution_grayscale(**test_args)
+    convolution_grayscale(
+        arr_img=arr_img,
+        kernel=kernel_name,
+        padding=padding_name,
+        output_dir=output_file,
+    )
+
     assert output_file.exists(), f"Output file not found: {output_file}"
 
     result_img = Image.open(output_file).convert("L")
