@@ -1,4 +1,3 @@
-from PIL import Image
 import numpy as np
 
 from src.kernels import KERNELS
@@ -31,20 +30,12 @@ def _convolve_array(arr_img: np.ndarray, kernel: str, padding: str) -> np.ndarra
     return new_img
 
 
-def _save_image(new_img: np.ndarray, output_dir: str):
-    new_img = np.clip(new_img, 0, 255).astype(np.uint8)
-    result = Image.fromarray(new_img)
-    result.save(output_dir)
-
-
-def convolution_grayscale(
-    arr_img: np.ndarray, kernel: str, padding: str, output_dir: str
-):
+def convolution_grayscale(arr_img: np.ndarray, kernel: str, padding: str) -> np.ndarray:
     new_img = _convolve_array(arr_img, kernel, padding)
-    _save_image(new_img, output_dir)
+    return new_img
 
 
-def convolution_rgb(arr_img: np.ndarray, kernel: str, padding: str, output_dir: str):
+def convolution_rgb(arr_img: np.ndarray, kernel: str, padding: str) -> np.ndarray:
     result_channels = []
 
     for c in range(3):
@@ -53,4 +44,4 @@ def convolution_rgb(arr_img: np.ndarray, kernel: str, padding: str, output_dir: 
         result_channels.append(new_img)
 
     new_img = np.dstack(result_channels)
-    _save_image(new_img, output_dir)
+    return new_img

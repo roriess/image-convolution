@@ -36,12 +36,15 @@ def test_kernel(kernel_name, padding_name, args):
     img = Image.open(args["input_dir"]).convert("L")
     arr_img = np.asarray(img, dtype=np.float32)
 
-    convolution_grayscale(
+    new_img = convolution_grayscale(
         arr_img=arr_img,
         kernel=kernel_name,
         padding=padding_name,
-        output_dir=output_file,
     )
+
+    new_img = np.clip(new_img, 0, 255).astype(np.uint8)
+    result = Image.fromarray(new_img)
+    result.save(output_file)
 
     assert output_file.exists(), f"Output file not found: {output_file}"
 

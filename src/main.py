@@ -35,12 +35,15 @@ def main():
     arr_img = np.asarray(img, dtype=np.float32)
 
     func = convolution_grayscale if args.image_mode == "L" else convolution_rgb
-    func(
+    new_img = func(
         arr_img=arr_img,
         kernel=args.kernel,
         padding=args.padding,
-        output_dir=args.output_dir,
     )
+
+    new_img = np.clip(new_img, 0, 255).astype(np.uint8)
+    result = Image.fromarray(new_img)
+    result.save(args.output_dir)
 
 
 if __name__ == "__main__":
