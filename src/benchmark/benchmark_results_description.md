@@ -7,14 +7,14 @@
 ## Результаты
 
 - **128×128**: 
-    - **Grayscale**: Educational ≈ 104 мс, OpenCV ≈ 0,28 мс. Разрыв в 370 раз. 
-    - **RGB**: Educational ≈ 212 мс, OpenCV ≈ 0,15 мс. Разрыв в 1410 раз. 
+    - **Grayscale**: Educational ≈ 30.00 мс, OpenCV ≈ 0.03 мс. Разрыв в 1000 раз. 
+    - **RGB**: Educational ≈ 70.00 мс, OpenCV ≈ 0.04 мс. Разрыв в 1750 раз. 
 - **1024×1024**:
-    - **Grayscale**: Educational ≈ 3,87 с, OpenCV ≈ 1,98 мс. Разрыв в 1950 раз. 
-    - **RGB**: Educational ≈ 11,32 с, OpenCV ≈ 5,72 мс. Разрыв в 1980 раз. 
+    - **Grayscale**: Educational ≈ 1.40 с, OpenCV ≈ 0.92 мс. Разрыв в 1521 раз. 
+    - **RGB**: Educational ≈ 4.37 с, OpenCV ≈ 2.25 мс. Разрыв в 1922 раза. 
 - **4096×4096**:
-    - **Grayscale**: Educational ≈ 60,4 с, OpenCV ≈ 44,0 мс. Разрыв в 1370 раз. 
-    - **RGB**: Educational ≈ 181,9 с, OpenCV ≈ 136,3 мс. Разрыв в 1335 раз. 
+    - **Grayscale**: Educational ≈ 22.97 с, OpenCV ≈ 19.20 мс. Разрыв в 1196 раз. 
+    - **RGB**: Educational ≈ 75.55 с, OpenCV ≈ 55,55 мс. Разрыв в 1360 раз. 
 
 ## Причины различий
 

@@ -39,15 +39,22 @@ def _measure_convolution(
     kernel = KERNELS[kernel_name]
     border = PADDING_FOR_OPENCV.get(padding_name, cv2.BORDER_DEFAULT)
 
-    start = time.perf_counter()
+    # для прогрева
     func(img, kernel_name, padding_name)
-    edu_time = time.perf_counter() - start
-
-    start = time.perf_counter()
     cv2.filter2D(img, ddepth=-1, kernel=kernel, borderType=border)
-    cv_time = time.perf_counter() - start
 
-    return edu_time, cv_time
+    edu_total = 0.0
+    cv_total = 0.0
+    for _ in range(3):
+        start = time.perf_counter()
+        func(img, kernel_name, padding_name)
+        edu_total += time.perf_counter() - start
+
+        start = time.perf_counter()
+        cv2.filter2D(img, ddepth=-1, kernel=kernel, borderType=border)
+        cv_total += time.perf_counter() - start
+
+    return edu_total / 3, cv_total / 3
 
 
 def _testing_image(
