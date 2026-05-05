@@ -1,4 +1,5 @@
 import numpy as np
+from typing import Callable
 
 
 # игнорирование краёв
@@ -129,5 +130,5 @@ PADDINGS = {
 
 
 # применение обработки края к будущему изображению
-def add_padding(arr_img: np.ndarray, kernel_height: int, func) -> np.ndarray:
+def add_padding(arr_img: np.ndarray, kernel_height: int, func: Callable) -> np.ndarray:
     return func(arr_img, kernel_height)
