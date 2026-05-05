@@ -1,8 +1,10 @@
 from src.convolution import convolution_grayscale, convolution_rgb
 from PIL import Image
 import numpy as np
-from src.benchmark.benchmark import run_benchmark
+from src.benchmark.visualization import visualization
+from src.benchmark.run_benchmark import run_benchmark
 import typer
+from pathlib import Path
 
 app = typer.Typer()
 
@@ -35,8 +37,25 @@ def run(
 
 
 @app.command()
-def benchmark():
-    run_benchmark()
+def benchmark(
+    only_benchmark: bool = typer.Option(False, "--benchmark", help="Run benchmark"),
+    only_visualization: bool = typer.Option(
+        False, "--visualization", help="Run visualization"
+    ),
+):
+
+    if not only_benchmark and not only_visualization:
+        only_benchmark = True
+        only_visualization = True
+
+    if only_benchmark:
+        run_benchmark()
+
+    if only_visualization:
+        file_path = Path("results.json")
+        if not file_path.exists():
+            raise FileNotFoundError("File not found. Run the benchmark first.")
+        visualization()
 
 
 if __name__ == "__main__":
