@@ -7,10 +7,22 @@
 *   `images/`: хранит исходные изображения.
 *   `results/`: хранит результаты свёртки.
 *   `src/`: содержит весь исходный код.
-    *   `/kernels.py`: набор ядер свёртки.
-    *   `/convolution_grayscale.py`: свёртка для grayscale.
-    *   `/padding.py`: набор вариантов обработки края.
-    *   `/main.py`: точка входа в программу.
+    *   `benchmark/`: модуль для тестирования производительности.
+        *   `benchmark.py`: скрипт запуска бенчмарка (сравнение Educational и OpenCV).
+        *   `benchmark_visualization.png`: график сравнения времени выполнения.
+    *   `convolution.py`: реализация свёртка (Educational).
+    *   `kernels.py`: набор ядер свёртки.
+    *   `main.py`: точка входа в программу.
+    *   `padding.py`: набор вариантов обработки края.
+*   `tests/`
+    *   `for_test_grayscale/`
+        *   `golden_grayscale/`: эталонные изображения для ч/б свёртки.
+        *   `create_golden_grayscale.py`: генерация эталонов.
+    *   `for_test_rgb/`
+        *   `golden_rgb/`: эталонные изображения для цветной свёртки.
+        *   `create_golden_rgb.py`: генерация эталонов для RGB.
+    *   `test_convolution_grayscale.py`: pytest‑тесты для ч/б изображений.
+    *   `test_convolution_rgb.py`: pytest‑тесты для цветных изображений.
 
 ## Доступные ядра
 ### 3x3:
@@ -26,9 +38,9 @@
 
 
 ## Доступные варианты обработки края
-### Размер итогового изображения меньше размера исходного:
+Размер итогового изображения меньше размера исходного:
 *   `no_padding`: игнорирование краёв.
-### Размер итогового изображения равен размеру исходного:
+Размер итогового изображения равен размеру исходного:
 *   `zero_padding`: дополнение нулями.
 *   `replicate_padding`: копирование крайних пикселей.
 *   `mirror_padding`: отражение без дублирования границы.
@@ -37,9 +49,22 @@
 
 ##
 Запуск программы: 
+Для свертки изображений:
 ```markdown
-python main.py --input_dir INPUT_DIR --output_dir --image_mode IMAGE_MODE OUTPUT_DIR --kernel KERNEL --padding PADDING
+python -m src.main.py run --input_dir INPUT_DIR --output_dir --image_mode IMAGE_MODE OUTPUT_DIR --kernel KERNEL --padding PADDING
 ```
+Для теста производительности:
+```markdown
+python -m src.main.py benchmark
+```
+Справка: 
+```markdown
+python -m src.main run --help
+```
+```markdown
+python -m src.main benchmark --help
+```
+
 ## 
 Изображение для примера взято с данного сайта: https://www.publicdomainarchive.com/ \
 Изображения на сайте распространяются под лицензией Public Domain.
