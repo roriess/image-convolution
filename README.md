@@ -47,6 +47,7 @@
 *   `symmetric_padding`: симметричное отражение с дублированием границы.
 *   `tile_padding`: циклическое продолжение.
 
+
 ## Установка
 1. Создайте виртуальное окружение: `python -m venv .venv`
 2. Активируйте егo: `source .venv/bin/activate`
@@ -55,13 +56,13 @@
 ## Запуск программы: 
 Для свертки изображений:
 ```markdown
-python -m src.main.py run --input_dir INPUT_DIR --output_dir --image_mode IMAGE_MODE OUTPUT_DIR --kernel KERNEL --padding PADDING
+uv run -m src.main run --input-dir INPUT_DIR --output-dir OUTPUT_DIR --image-mode IMAGE_MODE (L/RGB) --kernel KERNEL --padding ADDING
 ```
 Для тестов: 
 
 Для теста производительности:
 ```markdown
-python -m src.main.py benchmark
+uv run -m src.main benchmark
 ```
 Справка: 
 ```markdown
