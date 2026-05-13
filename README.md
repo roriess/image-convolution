@@ -56,7 +56,7 @@
 ## Запуск программы: 
 Для свертки изображений:
 ```markdown
-uv run -m src.main run --input-dir INPUT_DIR --output-dir OUTPUT_DIR --image-mode IMAGE_MODE (L/RGB) --kernel KERNEL --padding ADDING
+uv run -m src.main run --input-dir INPUT_DIR --output-dir OUTPUT_DIR --image-mode IMAGE_MODE (L/RGB) --kernel KERNEL --padding PADDING
 ```
 Для тестов: 
 
