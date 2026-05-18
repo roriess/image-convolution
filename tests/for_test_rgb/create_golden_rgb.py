@@ -2,9 +2,7 @@ import numpy as np
 from PIL import Image
 from pathlib import Path
 from scipy.signal import correlate2d
-import sys
 
-sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 from src.kernels import KERNELS
 
 INPUT_IMAGE = Path("images/image.jpg")

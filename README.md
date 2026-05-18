@@ -47,22 +47,29 @@
 *   `symmetric_padding`: симметричное отражение с дублированием границы.
 *   `tile_padding`: циклическое продолжение.
 
-##
-Запуск программы: 
+
+## Установка зависимостей
+```markdown
+uv sync
+```
+
+## Запуск программы: 
 Для свертки изображений:
 ```markdown
-python -m src.main.py run --input_dir INPUT_DIR --output_dir --image_mode IMAGE_MODE OUTPUT_DIR --kernel KERNEL --padding PADDING
+uv run -m src.main run --input-dir INPUT_DIR --output-dir OUTPUT_DIR --image-mode IMAGE_MODE (L/RGB) --kernel KERNEL --padding PADDING
 ```
+Для тестов: 
+
 Для теста производительности:
 ```markdown
-python -m src.main.py benchmark
+uv run -m src.main benchmark
 ```
 Справка: 
 ```markdown
-python -m src.main run --help
+uv run -m src.main run --help
 ```
 ```markdown
-python -m src.main benchmark --help
+uv run -m src.main benchmark --help
 ```
 
 ## 

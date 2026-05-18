@@ -1,0 +1,15 @@
+[project]
+name = "image-convolution"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "matplotlib>=3.10.9",
+    "numpy>=2.2.6",
+    "opencv-python>=4.13.0.92",
+    "pillow>=12.2.0",
+    "typer>=0.25.1",
+    "pytest>=9.0.3",
+    "pytest-benchmark>=4.0.0",
+]
